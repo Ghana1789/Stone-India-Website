@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
+import socket from '../../services/socket';
 import toast from 'react-hot-toast';
 import { FiSend, FiMessageSquare } from 'react-icons/fi';
-import io from 'socket.io-client';
 
 export default function Support() {
   const { user } = useAuth();
@@ -11,18 +11,17 @@ export default function Support() {
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const bottomRef = useRef(null);
-  const socketRef = useRef(null);
   const roomId = `client_${user?._id}`;
 
   useEffect(() => {
     api.get('/client/messages').then(r => setMessages(r.data.data));
 
-    socketRef.current = io('/', { transports: ['websocket'] });
-    socketRef.current.emit('join_room', roomId);
-    socketRef.current.on('receive_message', (msg) => {
+    socket.emit('join_room', roomId);
+    const handleReceive = (msg) => {
       setMessages(prev => [...prev, msg]);
-    });
-    return () => socketRef.current?.disconnect();
+    };
+    socket.on('receive_message', handleReceive);
+    return () => socket.off('receive_message', handleReceive);
   }, [roomId]);
 
   useEffect(() => {
