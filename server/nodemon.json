@@ -1,0 +1,6 @@
+{
+  "watch": ["server.js", "routes/", "middleware/", "models/"],
+  "ext": "js,json",
+  "ignore": ["tests/", "uploads/", "seed*.js", "package*.json"],
+  "delay": "1500"
+}

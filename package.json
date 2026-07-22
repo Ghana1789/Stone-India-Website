@@ -1,0 +1,18 @@
+{
+  "name": "stone-india-portal",
+  "version": "1.0.0",
+  "description": "Stone India Pvt. Ltd. Multi-Role Portal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "client": "cd \"client\" && npm run dev",
+    "server": "cd \"server\" && npm run dev",
+    "dev": "node start-all.js",
+    "start": "node start-all.js",
+    "seed": "cd server && node seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

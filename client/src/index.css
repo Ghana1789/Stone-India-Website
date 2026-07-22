@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    color-scheme: dark;
+    overflow-anchor: none;
+  }
+
+  body {
+    color-scheme: dark;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #000000;
+    color: #fafafa;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-anchor: none;
+  }
+
+  /* Universal Dark Mode Form Controls & Dropdowns */
+  select,
+  input,
+  textarea {
+    color-scheme: dark !important;
+  }
+
+  select {
+    background-color: #13161e;
+    color: #fafafa;
+  }
+
+  /* Ensure select options never render with a white background or white-on-white text */
+  option,
+  optgroup,
+  select option,
+  select optgroup,
+  .input option,
+  .input optgroup {
+    background-color: #13161e !important;
+    color: #fafafa !important;
+  }
+
+  select:focus option,
+  select:hover option,
+  select:active option {
+    background-color: #13161e !important;
+    color: #fafafa !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #18181b;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
+}
+
+@layer components {
+
+  /* Glassmorphism for dark theme */
+  .glass {
+    @apply bg-white/5 border border-white/10 backdrop-blur-md;
+  }
+
+  .glass-dark {
+    @apply bg-black/40 border border-white/5 backdrop-blur-lg;
+  }
+
+  /* Flatten gradient text to solid brand color */
+  .gradient-text {
+    @apply text-brand-600;
+  }
+
+  .gradient-text-blue {
+    @apply text-blue-600;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-white hover:bg-slate-200 text-black font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent hover:bg-white/5 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 border border-white/10 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-white/10 text-slate-300 hover:bg-white/5 hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 font-semibold px-4 py-2 rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm rounded-lg;
+  }
+
+  .btn-xs {
+    @apply px-3 py-1.5 text-xs rounded-md;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full bg-transparent border border-white/10 text-white rounded-xl px-4 py-3 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-white/30 focus:border-white/30 transition-all duration-200 text-sm;
+  }
+
+  select.input {
+    @apply bg-[#13161e] border border-white/10 text-white cursor-pointer;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-slate-400 mb-1.5;
+  }
+
+  .form-group {
+    @apply space-y-1;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-slate-950/50 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:border-white/20 hover:bg-white/[0.02] hover:-translate-y-0.5;
+  }
+
+  .stat-card {
+    @apply card flex items-center gap-4;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .badge-green {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  .badge-yellow {
+    @apply badge bg-yellow-100 text-yellow-700;
+  }
+
+  .badge-red {
+    @apply badge bg-red-100 text-red-700;
+  }
+
+  .badge-blue {
+    @apply badge bg-blue-100 text-blue-700;
+  }
+
+  .badge-purple {
+    @apply badge bg-purple-100 text-purple-700;
+  }
+
+  .badge-gray {
+    @apply badge bg-slate-100 text-slate-600;
+  }
+
+  /* Table */
+  .table-wrapper {
+    @apply overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .table {
+    @apply w-full text-sm;
+  }
+
+  .table thead tr {
+    @apply bg-slate-50 border-b border-slate-200;
+  }
+
+  .table th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider;
+  }
+
+  .table tbody tr {
+    @apply border-b border-slate-200 hover:bg-slate-50 transition-colors duration-150;
+  }
+
+  .table td {
+    @apply px-4 py-3 text-slate-700;
+  }
+
+  /* Sidebar */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium;
+  }
+
+  .sidebar-link.active {
+    @apply bg-white/10 text-white border border-white/10;
+  }
+
+  /* Section */
+  .section {
+    @apply py-20 px-4;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-5xl font-bold font-display mb-4 text-white tracking-tight;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Status colors */
+  .status-pending {
+    @apply badge-yellow;
+  }
+
+  .status-confirmed {
+    @apply badge-blue;
+  }
+
+  .status-active {
+    @apply badge-green;
+  }
+
+  .status-completed {
+    @apply badge-green;
+  }
+
+  .status-failed {
+    @apply badge-red;
+  }
+
+  .status-cancelled {
+    @apply badge-red;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
