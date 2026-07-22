@@ -1,7 +1,7 @@
 services:
   # Backend Web Service
   - type: web
-    name: stone-india-server
+    name: stone-india-website
     runtime: node
     rootDir: server
     buildCommand: npm install
@@ -16,7 +16,7 @@ services:
       - key: JWT_EXPIRE
         value: 7d
       - key: CLIENT_URL
-        value: https://stone-india-client.onrender.com
+        value: https://stone-india-website-1.onrender.com
       - key: SMTP_HOST
         value: smtp.gmail.com
       - key: SMTP_PORT
@@ -30,7 +30,7 @@ services:
 
   # Frontend Static Site
   - type: static
-    name: stone-india-client
+    name: stone-india-website-1
     rootDir: client
     buildCommand: npm install && npm run build
     publishDir: dist
@@ -40,6 +40,6 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        value: https://stone-india-server.onrender.com/api
+        value: https://stone-india-website.onrender.com/api
       - key: VITE_SOCKET_URL
-        value: https://stone-india-server.onrender.com
+        value: https://stone-india-website.onrender.com
