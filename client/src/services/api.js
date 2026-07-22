@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const getBaseUrl = () => {
-  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
   if (typeof window !== 'undefined' && window.location.hostname.endsWith('onrender.com')) {
     return 'https://stone-india-website.onrender.com/api';
   }
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
   return '/api';
 };
 
