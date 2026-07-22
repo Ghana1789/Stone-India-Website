@@ -35,17 +35,24 @@ import { errorHandler } from './middleware/errorHandler.js';
 const app = express();
 const server = http.createServer(app);
 
-// Socket.io
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
-  'http://localhost:5175'
-];
+  'http://localhost:5175',
+  process.env.CLIENT_URL
+].filter(Boolean);
+
+const checkCorsOrigin = (origin, callback) => {
+  if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.onrender.com') || process.env.NODE_ENV !== 'production') {
+    return callback(null, true);
+  }
+  return callback(null, true);
+};
 
 // Socket.io
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: checkCorsOrigin,
     methods: ['GET', 'POST'],
     credentials: true
   }
@@ -60,7 +67,7 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
       imgSrc: ["'self'", 'data:', 'https://images.unsplash.com', 'https://res.cloudinary.com'],
-      connectSrc: ["'self'", 'ws:', 'wss:', 'http://localhost:5000', 'ws://localhost:5000'],
+      connectSrc: ["'self'", 'ws:', 'wss:', 'http:', 'https:'],
     },
   },
   crossOriginEmbedderPolicy: false,
@@ -77,7 +84,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors({
-  origin: allowedOrigins,
+  origin: checkCorsOrigin,
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
