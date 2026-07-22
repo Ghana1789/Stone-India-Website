@@ -10,13 +10,23 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGO_URI
-        sync: false
+        value: mongodb+srv://stone-india:Stone_india%401789@stone-india.yfyltso.mongodb.net/?appName=stone-india
       - key: JWT_SECRET
-        generateValue: true
+        value: stone_india_super_secret_jwt_key_2024_ev_battery
       - key: JWT_EXPIRE
         value: 7d
       - key: CLIENT_URL
-        sync: false
+        value: https://stone-india-client.onrender.com
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: stoneindiapvtltd@gmail.com
+      - key: SMTP_PASS
+        value: your_app_password_here
+      - key: SMTP_FROM
+        value: Stone India EV <stoneindiapvtltd@gmail.com>
 
   # Frontend Static Site
   - type: static
@@ -30,4 +40,6 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        sync: false
+        value: https://stone-india-server.onrender.com/api
+      - key: VITE_SOCKET_URL
+        value: https://stone-india-server.onrender.com
