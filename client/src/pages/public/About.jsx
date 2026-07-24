@@ -3,7 +3,7 @@ import Footer from '../../components/Footer';
 import { FiBatteryCharging, FiTarget, FiEye, FiHeart } from 'react-icons/fi';
 
 const team = [
-  { name: 'Arun Mehta', role: 'Founder & CEO', desc: 'IIT Bombay alum with 15+ years in electrochemistry and EV tech.', emoji: '👨‍💼' },
+  { name: 'Naidu Mithun Reddy', role: 'Founder & CEO', desc: 'IIT Bombay alum with 15+ years in electrochemistry and EV tech.', emoji: '👨‍💼' },
   { name: 'Sunita Rao', role: 'Head of R&D', desc: 'Ph.D in Materials Science. Led LFP chemistry research at DRDO.', emoji: '👩‍🔬' },
   { name: 'Vikram Singh', role: 'VP Manufacturing', desc: '20 years in automotive manufacturing. Six Sigma Black Belt.', emoji: '👨‍🏭' },
   { name: 'Priyanka Das', role: 'Head of Quality', desc: 'ISO certified quality lead with expertise in AIS compliance.', emoji: '👩‍💻' },
